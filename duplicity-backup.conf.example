@@ -453,6 +453,10 @@ IFTTT_VALUE2="" # general purpose value to pass to your maker channel (optional)
 TELEGRAM_CHATID="" #Generate a Telegram bot following guide: https://core.telegram.org/bots#3-how-do-i-create-a-bot
 TELEGRAM_KEY=""
 
+#Provider: Discord
+DISCORD_HOOK_URL="https://discord.com/api/webhooks/0000000000/token"
+DISCORD_MESSAGE_TITLE="BACKUP NOTIFICATIONS"
+
 # ------------------------------------------------------------------------------
 # TROUBLESHOOTING
 # ------------------------------------------------------------------------------
