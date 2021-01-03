@@ -856,20 +856,6 @@ duplicity_backup()
   }
 }
 
-duplicity_backup_mysql()
-{
-  {
-    eval mysqldump -u ${MYSQL_BACKUP_USERNAME} -p ${MYSQL_BACKUP_PASSWORD}  -h ${MYSQL_HOST} --alldatabases
-  } > \
-  {
-    eval "${ECHO}" "${DUPLICITY}" "${OPTION}" "${VERBOSITY}" "${STATIC_OPTIONS}" \
-    "${ENCRYPT}" \
-    "${DEST}"
-  } || {
-    BACKUP_ERROR=1
-  }
-}
-
 duplicity_cleanup_failed()
 {
   {
@@ -1150,13 +1136,6 @@ case "${COMMAND}" in
     get_file_sizes
   ;;
 
-  "mysqlbackup")
-    include_exclude
-    duplicity_backup_mysql
-    duplicity_cleanup
-    get_file_sizes
-  ;;
-
   *)
     echo -e "[Only show $(basename "$0") usage options]\n"
     usage
@@ -1201,7 +1180,6 @@ unset DPBX_ACCESS_TOKEN
 unset PASSPHRASE
 unset SIGN_PASSPHRASE
 unset FTP_PASSWORD
-unset MYSQL_BACKUP_PASSWORD
 
 # restore stdout and stderr to their original values
 # and close the other fd

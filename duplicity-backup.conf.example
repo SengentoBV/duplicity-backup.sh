@@ -459,17 +459,6 @@ DISCORD_HOOK_TITLE="BACKUP NOTIFICATIONS"
 DISCORD_HOOK_IMAGE=""
 
 # ------------------------------------------------------------------------------
-# MYSQL Backup Options
-# ------------------------------------------------------------------------------
-#
-# MySQL Backup Options that allow dumping all databases of mysql server and 
-# backing up the information.
-
-MYSQL_BACKUP_USERNAME=""
-MYSQL_BACKUP_PASSWORD=""
-MYSQL_HOST=""
-
-# ------------------------------------------------------------------------------
 # TROUBLESHOOTING
 # ------------------------------------------------------------------------------
 #
