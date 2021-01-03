@@ -591,7 +591,7 @@ send_notification()
     elif [ "${NOTIFICATION_SERVICE}" = "telegram" ]; then
       curl -s --max-time 10 -d "chat_id=${TELEGRAM_CHATID}&disable_web_page_preview=1&text=${NOTIFICATION_CONTENT}" "https://api.telegram.org/bot${TELEGRAM_KEY}/sendMessage" >/dev/null
     elif [ "${NOTIFICATION_SERVICE}" = "discord" ]; then
-      curl -s --max-time 10 -i -H "Expect: application/json" -F file=@${LOGFILE} -F "payload_json={\"wait\": true, \"content\": \"\`\`${HOSTNAME}\`\` has completed their backup with the status of \`\`${BACKUP_STATUS:-\"ERROR\"}\`\`\", \"username\": \"${DISCORD_HOOK_TITLE}\", \"avatar_url\": \"${DISCORD_HOOK_IMAGE}\"}" "${DISCORD_HOOK_URL}"
+      curl -s --max-time 10 -i -H "Expect: application/json" -F file=@${LOGFILE} -F "payload_json={\"wait\": true, \"content\": \"\`\`${HOSTNAME}\`\` has completed their backup with the status of \`\`${BACKUP_STATUS:-\"ERROR\"}\`\`\", \"username\": \"${DISCORD_HOOK_TITLE}\", \"avatar_url\": \"${DISCORD_HOOK_IMAGE}\"}" "${DISCORD_HOOK_URL}" >/dev/null
     fi
 
     echo -e "\n----------------------------------------------\n"
