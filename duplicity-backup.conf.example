@@ -455,7 +455,8 @@ TELEGRAM_KEY=""
 
 #Provider: Discord
 DISCORD_HOOK_URL="https://discord.com/api/webhooks/0000000000/token"
-DISCORD_MESSAGE_TITLE="BACKUP NOTIFICATIONS"
+DISCORD_HOOK_TITLE="BACKUP NOTIFICATIONS"
+DISCORD_HOOK_IMAGE=""
 
 # ------------------------------------------------------------------------------
 # TROUBLESHOOTING
