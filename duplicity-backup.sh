@@ -591,7 +591,7 @@ send_notification()
     elif [ "${NOTIFICATION_SERVICE}" = "telegram" ]; then
       curl -s --max-time 10 -d "chat_id=${TELEGRAM_CHATID}&disable_web_page_preview=1&text=${NOTIFICATION_CONTENT}" "https://api.telegram.org/bot${TELEGRAM_KEY}/sendMessage" >/dev/null
     elif [ "${NOTIFICATION_SERVICE}" = "discord" ]; then
-      curl -s --max-time 10 -H "Accept: application/json" -H "Content-Type:application/json" -d "{\"content\": \"${NOTIFICATION_CONTENT}\"}" "https://api.telegram.org/bot${TELEGRAM_KEY}/sendMessage" >/dev/null
+      curl -s --max-time 10 -H "Accept: application/json" -H "Content-Type:application/json" -d "{\"content\": \"${NOTIFICATION_CONTENT}\"}" "${DISCORD_HOOK_URL}" >/dev/null
     fi
 
     echo -e "\n----------------------------------------------\n"
