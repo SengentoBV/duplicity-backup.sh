@@ -750,7 +750,7 @@ get_remote_file_size()
         fi
         SIZE=$(${B2CMD} ls --long "${BUCKET}" | awk '{ print $5 }' | paste -sd+ | bc | numfmt --to=iec)
       else
-              SIZE="-b2 not found in PATH-"
+              SIZE="-both backblaze-b2 and b2 not found in PATH-"
       fi
     ;;
     *)
