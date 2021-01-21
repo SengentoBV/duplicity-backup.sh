@@ -413,8 +413,8 @@ NO_S3CMD_CFG="WARNING: s3cmd is not configured, run 's3cmd --configure' \
 in order to retrieve remote file size information. Remote file \
 size information unavailable."
 
-NO_B2CMD="WARNING: b2 not found in PATH, remote file size information \
-unavailable. Is the python-b2 package installed?"
+NO_B2CMD="WARNING: blackblaze-b2 and b2 not found in PATH, remote file size information \
+unavailable. Is the python-b2 or backblaze-b2 package installed?"
 
 README_TXT="In case you've long forgotten, this is a backup script that you used to backup some files (most likely remotely at Amazon S3). In order to restore these files, you first need to import your GPG private(s) key(s) (if you haven't already). The key(s) is/are in this directory and the following command(s) should do the trick:\n\nIf you were using the same key for encryption and signature:\n  gpg --allow-secret-key-import --import duplicity-backup-encryption-and-sign-secret.key.txt\nOr if you were using two separate keys for encryption and signature:\n  gpg --allow-secret-key-import --import duplicity-backup-encryption-secret.key.txt\n  gpg --allow-secret-key-import --import duplicity-backup-sign-secret.key.txt\n\nAfter your key(s) has/have been succesfully imported, you should be able to restore your files.\n\nGood luck!"
 
@@ -466,9 +466,12 @@ fi
 
 if  [ "$(echo "${DEST}" | cut -c 1,2)" = "b2" ]; then
   DEST_IS_B2=true
-  B2CMD="$(command -v b2)"
+  B2CMD="$(command -v backblaze-b2)"
   if [ ! -x "${B2CMD}" ]; then
-    echo "${NO_B2CMD}"; B2CMD_AVAIL=false
+    B2CMD="$(command -v b2)"
+    if [ ! -x "${B2CMD}" ]; then
+      echo "${NO_B2CMD}"; B2CMD_AVAIL=false
+    fi
   fi
 else
   DEST_IS_B2=false
