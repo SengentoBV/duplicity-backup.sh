@@ -51,6 +51,7 @@ DBSH_VERSION="v1.6.0"
 exec 6>&1
 exec 7>&2
 
+# alias b2='/usr/bin/backblaze-b2'
 # ------------------------------------------------------------
 
 usage(){
@@ -579,7 +580,9 @@ send_notification()
 {
   if [ -n "${NOTIFICATION_SERVICE}" ]; then
     echo "-----------[ Notification Request ]-----------"
-    NOTIFICATION_CONTENT="duplicity-backup ${BACKUP_STATUS:-"ERROR"} [${HOSTNAME}] - \`${LOGFILE}\`"
+    LOG_CONTENT=`cat ${LOGFILE}`
+
+    NOTIFICATION_CONTENT=$"duplicity-backup ${BACKUP_STATUS:-"ERROR"} [${HOSTNAME}] - \`${LOGFILE}\`\n${LOG_CONTENT}"
 
     if [ "${NOTIFICATION_SERVICE}" = "slack" ]; then
       curl -X POST -H 'Content-type: application/json' --data "{\"text\": \"${NOTIFICATION_CONTENT}\", \"channel\": \"${SLACK_CHANNEL}\", \"username\": \"${SLACK_USERNAME}\", \"icon_emoji\": \":${SLACK_EMOJI}:\"}" "${SLACK_HOOK_URL}"
